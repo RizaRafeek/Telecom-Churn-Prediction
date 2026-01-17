@@ -28,3 +28,19 @@ Open Churn_Analysis.ipynb in Google Colab.
 Provide your Kaggle API credentials.
 
 Run the cells to see the evaluation and the saved model file (.pkg).
+
+🤖 Deep Learning Extension (ANN)I implemented an Artificial Neural Network (ANN) using TensorFlow/Keras to benchmark against the Random Forest model.
+
+Key Technical Implementations:
+Scaling: Applied StandardScaler to normalize features for the neural network.
+Architecture: Designed a sequential model with ReLU activation in hidden layers and Sigmoid for the output.
+Cost-Sensitive Learning: Implemented class_weights to address the 3:1 imbalance between stayers and churners.
+
+📊 Final Comparison & Decision
+Metric                      Random Forest (Winner)       Neural Network
+Overall Accuracy             ~78%                        76%
+Recall(Catching Churners)    ~80%                        73%
+Model Complexity             Low (Interpretive)          High (Black Box)
+
+Conclusion: While the Neural Network is a more "advanced" architecture, the Random Forest remains the superior choice for this business case. It provides a higher Recall, ensuring we catch more customers before they leave, and is easier to explain to business stakeholders.
+
