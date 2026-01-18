@@ -44,3 +44,14 @@ Model Complexity             Low (Interpretive)          High (Black Box)
 
 Conclusion: While the Neural Network is a more "advanced" architecture, the Random Forest remains the superior choice for this business case. It provides a higher Recall, ensuring we catch more customers before they leave, and is easier to explain to business stakeholders.
 
+## 📊 Final Performance Comparison
+After testing three distinct architectures, here are the results for catching churners (Recall):
+
+| Model | Technology | Recall (Churn) | Verdict |
+| :--- | :--- | :--- | :--- |
+| **Random Forest** | Ensemble | ~80% | **Winner: Best for Business** |
+| **XGBoost** | Gradient Boosting | 79% | High Performance / Industry Standard |
+| **Neural Network** | Deep Learning | 73% | Complex / Prone to Overfitting |
+
+**Project Conclusion:** For this dataset, the **Random Forest** provided the highest recall, making it the most cost-effective solution for identifying customers likely to leave.
+
