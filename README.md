@@ -1,57 +1,28 @@
-Telecom Churn Prediction
-A Supervised Learning project to identify high-risk customers using Random Forest.
+# 📡 Telecom Churn Prediction: High-Recall Engineering
+> **Optimizing customer retention through Ensemble Learning and Cost-Sensitive Analysis.**
 
-📌 The Problem
-The goal of this project is to predict which customers are likely to leave a telecom provider. Instead of just looking for "Accuracy," I focused on Recall—because missing a customer who is about to leave is more expensive for the business than a false alarm.
+## 📌 Executive Summary
+A machine learning solution to minimize revenue loss by predicting customer attrition. In this project, I prioritized **Recall (Sensitivity)** over global Accuracy to ensure that 80% of at-risk customers are identified for proactive retention, acknowledging that the cost of a lost customer far outweighs the cost of a false-positive intervention.
 
-🛠️ Technical Highlights
-Data Pipeline: Connected directly to Kaggle via API for a cloud-native workflow.
+## 🛠️ Technical Implementation
+* **Data Engineering:** Automated ingestion via Kaggle API. Handled data leakage and "Hidden Nulls" in `TotalCharges` using type-coercion and imputation.
+* **Feature Architecture:** * Implemented **One-Hot Encoding** for categorical variance.
+    * Addressed 3:1 class imbalance using **Synthetic Weighting (`class_weight='balanced'`)** to prevent model bias toward the majority class.
+* **Benchmarking:** Evaluated Traditional Ensembles (Random Forest, XGBoost) against Deep Learning (ANN) architectures.
 
-Cleaning: Identified and handled "Hidden Nulls" in TotalCharges (converting objects to numeric).
-
-Feature Engineering: Used One-Hot Encoding to transform categories like "Contract Type" and "Internet Service" into machine-readable data.
-
-Handling Imbalance: Applied class_weight='balanced' to ensure the model didn't ignore the minority "Churn" class.
-
-📈 Key Insights
-According to the model's Feature Importance, the top drivers for churn are:
-
-Total Charges / Monthly Charges: Price sensitivity is the #1 factor.
-
-Tenure: The first few months are the "danger zone" for new customers.
-
-Contract Type: Long-term contracts significantly reduce the probability of leaving.
-
-🚀 How to Run
-Open Churn_Analysis.ipynb in Google Colab.
-
-Provide your Kaggle API credentials.
-
-Run the cells to see the evaluation and the saved model file (.pkg).
-
-🤖 Deep Learning Extension (ANN)I implemented an Artificial Neural Network (ANN) using TensorFlow/Keras to benchmark against the Random Forest model.
-
-Key Technical Implementations:
-Scaling: Applied StandardScaler to normalize features for the neural network.
-Architecture: Designed a sequential model with ReLU activation in hidden layers and Sigmoid for the output.
-Cost-Sensitive Learning: Implemented class_weights to address the 3:1 imbalance between stayers and churners.
-
-📊 Final Comparison & Decision
-Metric                      Random Forest (Winner)       Neural Network
-Overall Accuracy             ~78%                        76%
-Recall(Catching Churners)    ~80%                        73%
-Model Complexity             Low (Interpretive)          High (Black Box)
-
-Conclusion: While the Neural Network is a more "advanced" architecture, the Random Forest remains the superior choice for this business case. It provides a higher Recall, ensuring we catch more customers before they leave, and is easier to explain to business stakeholders.
-
-## 📊 Final Performance Comparison
-After testing three distinct architectures, here are the results for catching churners (Recall):
-
-| Model | Technology | Recall (Churn) | Verdict |
+## 📈 Performance Comparison
+| Metric | Random Forest (Winner) | XGBoost | Neural Network (ANN) |
 | :--- | :--- | :--- | :--- |
-| **Random Forest** | Ensemble | ~80% | **Winner: Best for Business** |
-| **XGBoost** | Gradient Boosting | 79% | High Performance / Industry Standard |
-| **Neural Network** | Deep Learning | 73% | Complex / Prone to Overfitting |
+| **Recall (Churn)** | **0.80** | 0.79 | 0.73 |
+| **Accuracy** | 0.78 | 0.79 | 0.76 |
+| **Interpretability** | High | Medium | Low |
 
-**Project Conclusion:** For this dataset, the **Random Forest** provided the highest recall, making it the most cost-effective solution for identifying customers likely to leave.
+## 🚀 Key Engineering Insights
+1. **The "Danger Zone":** Feature importance reveals that **Tenure** is the strongest predictor; the first 6 months are critical for intervention.
+2. **Contract Optimization:** Month-to-month contracts are the primary churn driver. Business recommendation: Incentivize migration to annual contracts.
+3. **Architecture Choice:** While the ANN utilized ReLU/Sigmoid layers and `StandardScaler` normalization, it failed to outperform the **Random Forest** on Recall. 
 
+## 💻 Deployment & Reproducibility
+* **Environment:** Google Colab / Python 3.10+
+* **Dependencies:** `scikit-learn`, `xgboost`, `tensorflow`, `pandas`
+* **Execution:** Use the provided `.ipynb` to load the saved `.pkg` model and run real-time inference on new customer batches.
